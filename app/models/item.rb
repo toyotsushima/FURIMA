@@ -12,14 +12,14 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true
   validates :delivery_date_id, presence: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
-  
+  validates :price, numericality: { only_integer: true, message: "Half-width number." }
   
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category
-  belongs_to :item_status
-  belongs_to :shipping_fee_status
-  belongs_to :prefecture
-  belongs_to :delivery_date
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :shipping_fee_status
+  belongs_to_active_hash :delivery_date
+  belongs_to_active_hash :item_status
+  belongs_to_active_hash :category
 
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :item_status_id, numericality: { other_than: 1 , message: "can't be blank"} 
