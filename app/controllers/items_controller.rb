@@ -29,13 +29,12 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-  if @item.update(item_params)
-    redirect_to item_path(item_params)
-  else
-    render :edit, status: :unprocessable_entity
+    if @item.update(item_params)
+      redirect_to item_path(item_params)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
-end
-
 
   private
 
@@ -47,5 +46,4 @@ end
   def move_to_index
     redirect_to new_user_session_path unless user_signed_in?
   end
-
 end
