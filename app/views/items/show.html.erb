@@ -30,7 +30,7 @@
 
     <%= link_to "商品の編集", edit_item_path(@item) , method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
-    <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
+    <%= button_to "削除", item_path(@item) , method: :delete, class:"item-destroy" %>
 
    
     <%# 購入機能実装後に下記を実装 %>
