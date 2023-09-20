@@ -1,6 +1,5 @@
 <%= render "shared/second-header"%>
-
-<div class='transaction-contents'>
+  <div class='transaction-contents'>
   <div class='transaction-main'>
     <h1 class='transaction-title-text'>
       購入内容の確認
@@ -34,6 +33,8 @@
     <%= form_with  model: [@item, @orderform], url: item_orders_path(@item), id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
 
     <%= render 'shared/error_messages', model: @orderform %>
+
+    <%= include_gon %>
 
     <%# カード情報の入力 %>
     <div class='credit-card-form'>

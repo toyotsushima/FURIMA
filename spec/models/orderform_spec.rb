@@ -72,6 +72,11 @@ RSpec.describe OrderForm, type: :model do
           @orderform.valid?
           expect(@orderform.errors.full_messages).to include('Phone number is invalid')
         end
+        it "tokenが空では登録できないこと" do
+          @orderform.token = nil
+          @orderform.valid?
+          expect(@orderform.errors.full_messages).to include("Token can't be blank")
+        end
       end
     end
 end
