@@ -11,10 +11,11 @@ class OrderForm
     validates :phone_number, format: { with: /\A[0-9]{11}\z/, message: 'is invalid' }
     validates :token
   end
-  validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
+  validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
 
   def save
-    order = Order.create(user_id: user_id, item_id: item_id)
-    Destination.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building: building, phone_number: phone_number, order_id: order.id)
+    order = Order.create(user_id:, item_id:)
+    Destination.create(postal_code:, prefecture_id:, city:, address:, building:,
+                       phone_number:, order_id: order.id)
   end
 end

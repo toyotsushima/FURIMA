@@ -43,7 +43,6 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
-  
 
   private
 
@@ -53,9 +52,9 @@ class ItemsController < ApplicationController
   end
 
   def prevent_url
-    if @item.user_id != current_user.id || @item.order != nil 
-      redirect_to root_path
-    end
+    return unless @item.user_id != current_user.id || !@item.order.nil?
+
+    redirect_to root_path
   end
 
   def move_to_index
@@ -65,5 +64,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-  
 end
