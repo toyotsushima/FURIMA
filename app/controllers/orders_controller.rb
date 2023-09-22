@@ -3,14 +3,12 @@ class OrdersController < ApplicationController
   before_action :sold_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @orderform = OrderForm.new
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
   end
 
   def create
     @orderform = OrderForm.new(order_params)
-    @item = Item.find(params[:item_id])
     if @orderform.valid?
       pay_item
       @orderform.save

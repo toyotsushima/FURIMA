@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order_form do
-    item_id { 1 }
-    user_id { 1 }
+    item_id { Faker::Number.non_zero_digit }
+    user_id { Faker::Number.non_zero_digit }
     postal_code { '111-1111' }
     prefecture_id { 2 }
     city { '横浜市緑区' }
