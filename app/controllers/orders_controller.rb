@@ -21,10 +21,6 @@ class OrdersController < ApplicationController
 
   private
 
-  def move_to_index
-    redirect_to new_user_session_path unless user_signed_in?
-  end
-
   def order_params
     params.require(:order_form).permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number).merge(
       user_id: current_user.id, item_id: params[:item_id], token: params[:token]
