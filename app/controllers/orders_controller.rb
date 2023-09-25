@@ -1,10 +1,11 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :sold_item, only: [:index, :create]
+  before_action :pay_key, only: [:index, :create]
 
   def index
     @orderform = OrderForm.new
-    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
+    pay_key
   end
 
   def create
@@ -14,7 +15,7 @@ class OrdersController < ApplicationController
       @orderform.save
       redirect_to root_path
     else
-      gon.public_key = ENV['PAYJP_PUBLIC_KEY']
+      pay_key
       render :index, status: :unprocessable_entity
     end
   end
@@ -34,6 +35,10 @@ class OrdersController < ApplicationController
       card: order_params[:token], # カードトークン
       currency: 'jpy' # 通貨の種類（日本円）
     )
+  end
+
+  def pay_key
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
   end
 
   def sold_item
