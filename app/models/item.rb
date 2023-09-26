@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   validates :item_status_id, presence: true
   validates :shipping_fee_status_id, presence: true
   validates :prefecture_id, presence: true
-  validates :delivery_date_id, presence: true
+  validates :delivery_date_id, presence: true, numericality: { other_than: 1, message: 'Select' }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   validates :price, numericality: { only_integer: true, message: 'Half-width number.' }
 
